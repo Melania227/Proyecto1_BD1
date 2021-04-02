@@ -1,0 +1,60 @@
+﻿@model IEnumerable<ProyectoBD.Models.Parte>
+
+@{
+    ViewBag.Title = "Listado";
+}
+
+<h2>Index</h2>
+<style>
+
+    body {
+        margin: 0;
+        font-family: Arial;
+        background-image: url('../../Photography basics (5).png');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+
+
+
+    .container {
+        /* width: 1170px; */
+        width: 670px;
+    }
+</style>
+
+<h2>Listado de Partes</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Marca)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fabricante)
+        </th>
+
+
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fabricante.Nombre)
+            </td>
+        </tr>
+    }
+
+</table>

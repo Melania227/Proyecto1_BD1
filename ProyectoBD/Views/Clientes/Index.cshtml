@@ -1,0 +1,90 @@
+﻿@model ProyectoBD.Models.Modelos.Clientes_OP_Modelo
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial;
+        background-image: url('../../Photography basics (5).png');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+</style>
+<h2>Listado de Clientes</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Cédula
+        </th>
+        <th>
+            Cédula Júridica
+        </th>
+        <th>
+            Ciudad
+        </th>
+        <th>
+            Dirección
+        </th>
+        <th>
+            Estado
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Organizacion)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                ---
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cedula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente.Ciudad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente.Direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente.Estado.Tipo)
+            </td>
+        </tr>
+    }
+    @foreach (var item in Model.Persona)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cedula)
+            </td>
+            <td>
+                ---
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente.Ciudad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente.Direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente.Estado.Tipo)
+            </td>
+        </tr>
+    }
+
+</table>

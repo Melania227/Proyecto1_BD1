@@ -1,0 +1,89 @@
+﻿@model ProyectoBD.Models.Proveedor
+
+@{
+    ViewBag.Title = "Lista de números";
+}
+@{
+    var id = ViewContext.RouteData.Values["id"];
+}
+
+
+@using (Html.BeginForm())
+{
+
+    <style>
+        .form-group {
+            padding: 15px;
+            padding-top: 35px;
+            width: 50%;
+            max-width: 50%;
+            margin-top: 10px;
+        }
+    </style>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background-image: url('../../Photography basics (5).png');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+    </style>
+    @Html.AntiForgeryToken()
+    {
+
+        if (ViewBag.hayNum != 0)
+        {
+            <div class="form-group">
+
+                <h2>@Model.NombreProveedor </h2>
+                <h4>Contacto: @Model.NombreContacto </h4>
+                <table class="table">
+                    <tr>
+                        <th>
+                            Números de teléfono registrados
+                        </th>
+                        <th>
+
+                        </th>
+                    </tr>
+                    @foreach (int item in ViewBag.tels)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item)
+                            </td>
+                        </tr>
+
+                    }
+                </table>
+            </div>
+            <div>
+                @Html.ActionLink("Volver", "FindParte", "Ordens")
+            </div>
+        }
+        else
+        {
+            <div class="form-group">
+                <h2>@Model.NombreProveedor </h2>
+                <h4>Contacto: @Model.NombreContacto </h4>
+                <table class="table">
+                    <tr>
+                        <th>
+                            No se encuentran números de teléfono registrados
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.ActionLink("Volver a busqueda", null, null, null, new { href = Request.UrlReferrer})
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        }
+
+    }
+}
+
+

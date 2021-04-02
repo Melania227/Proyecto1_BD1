@@ -1,0 +1,91 @@
+﻿@model ProyectoBD.Models.Persona
+
+@{
+    ViewBag.Title = "Lista de números";
+}
+@{
+    var id = ViewContext.RouteData.Values["id"];
+}
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background-image: url('../../Photography basics (5).png');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+    </style>
+
+@using (Html.BeginForm())
+{
+
+    <style>
+        .form-group {
+            padding: 15px;
+            padding-top: 35px;
+            width: 50%;
+            max-width: 50%;
+            margin-top: 10px;
+        }
+    </style>
+    @Html.AntiForgeryToken()
+    {
+
+        if (ViewBag.hayNum != 0)
+        {
+            <div class="form-group">
+                <h2>@Model.Nombre</h2>
+                <table class="table">
+                    <tr>
+                        <th>
+                            Números de teléfono registrados
+                        </th>
+                        <th>
+
+                        </th>
+                    </tr>
+                    @foreach (int item in ViewBag.tels)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Editar Telefono", "EditarMenu2", new { id = id, num = item })
+                            </td>
+                        </tr>
+
+                    }
+                </table>
+            </div>
+            <div>
+                @Html.ActionLink("Volver", "Index") |
+                @Html.ActionLink("Agregar un número de teléfono", "AgregarTelefono", new { id = id })
+            </div>
+        }
+        else
+        {
+            <div class="form-group">
+                <h2>@Model.Nombre</h2>
+                <table class="table">
+                    <tr>
+                        <th>
+                            No se encuentran números de teléfono registrados
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.ActionLink("Volver", "Index") |
+                            @Html.ActionLink("Agregar un número de teléfono", "AgregarTelefono", new { id = id })
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        }
+
+    }
+}
+
+

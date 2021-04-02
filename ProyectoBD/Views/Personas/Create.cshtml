@@ -1,0 +1,103 @@
+﻿@model ProyectoBD.Models.Modelos.PersonaModelo
+
+@{
+    ViewBag.Title = "Agregar persona";
+}
+
+<h2>Create</h2>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial;
+        background-image: url('../../Photography basics (5).png');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h2>Agregar persona</h2>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <!-- NOMBRE -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!-- CEDULA -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cedula, "Cédula", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Cedula, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Cedula, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!-- CIUDAD -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cliente.Ciudad, "Ciudad", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Cliente.Ciudad, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Cliente.Ciudad, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!-- DIRECCION -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cliente.Direccion, "Dirección", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Cliente.Direccion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Cliente.Direccion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Continuar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+    if (ViewBag.Msg != null)
+    {
+        bool result = ViewBag.Resultado;
+
+        if (result)
+        {
+            <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Msg");
+                window.location.href = "/Personas/Index"
+            }
+            </script>
+        }
+        else
+        {
+            <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Msg");
+                window.location.href = "/Personas/Create"
+            }
+            </script>
+        }
+    }
+}
+
+<div>
+    @Html.ActionLink("Listado", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

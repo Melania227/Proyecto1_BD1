@@ -1,0 +1,7 @@
+﻿@model ProyectoBD.Models.Proveedor
+
+
+@foreach (var item in ViewBag.pProv)
+{
+    <option value="@item.Value">@item.Text</option>
+}

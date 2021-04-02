@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ProyectoBD.Models.Organizacion>
+
+
+@{
+    ViewBag.Title = "Listado";
+}
+
+<h2>Index</h2>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial;
+        background-image: url('../../Photography basics (5).png');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+</style>
+<h2>Listado de Organizaciones</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            Cédula
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cliente.Ciudad)
+        </th>
+        <th>
+            Dirección
+        </th>
+        <th>
+            Estado
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cedula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente.Ciudad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente.Direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente.Estado.Tipo)
+            </td>
+            <td>
+                @Html.ActionLink("Contacto", "Details", new { id = item.Cedula })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,81 @@
+﻿@model ProyectoBD.Models.Modelos.OrdenClienteModelo
+
+@{
+    ViewBag.Title = "Agregar orden";
+}
+
+<h2>Create</h2>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial;
+        background-image: url('../../Photography basics (5).png');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+</style>
+@using (Html.BeginForm())
+{
+
+
+    @Html.AntiForgeryToken()
+
+
+    <div class="form-horizontal">
+        <h2>Agregar una órden</h2>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Id_Cliente, "Cliente", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Id_Cliente, ViewBag.ID_Cliente as SelectList, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Id_Cliente, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Fecha, "Fecha", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Fecha, new { htmlAttributes = new { @class = "datepicker" } })
+                @Html.ValidationMessageFor(model => model.Fecha, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Agregar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+@Html.ActionLink("Listado", "registroOrdenes")
+
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+@section scripts{
+
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script>
+        $(function () {
+            $(".datepicker").datepicker({
+                changeMonth: true,
+                showOn: 'button',
+                dateFormat: 'dd-mm-yy',
+                changeYear: true
+            });
+        });
+    </script>
+
+   @if (ViewBag.Msg != null)
+    {
+   
+      <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Msg");
+                window.location.href = "/Ordens/registroOrdenes"
+            }
+    </script>
+    
+    }
+}

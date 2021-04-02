@@ -1,0 +1,133 @@
+﻿@model ProyectoBD.Models.Modelos.OrganizacionModelo
+
+@{
+    ViewBag.Title = "Agregar Organizacion";
+}
+
+<h2>Create</h2>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial;
+        background-image: url('../../Photography basics (5).png');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h2>Agregar organización</h2>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <!--NOMBRE-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!--Cedula-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cedula, "Cédula Júridica", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Cedula, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Cedula, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <!--Ciudad-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cliente.Ciudad, "Ciudad", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Cliente.Ciudad, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Cliente.Ciudad, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!--Direccion-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cliente.Direccion, "Dirección", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Cliente.Direccion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Cliente.Direccion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <h3>Contacto</h3>
+        <hr />
+
+        <!--Contacto-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.Contacto.Nombre, "Contacto", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Contacto.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Contacto.Nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!--Cargo-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.Contacto.Cargo, "Cargo", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Contacto.Cargo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Contacto.Cargo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <!--Telefono-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.Contacto.Telefono, "Teléfono", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Contacto.Telefono, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Contacto.Telefono, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Agregar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    if (ViewBag.Msg != null)
+    {
+        bool result = ViewBag.Resultado;
+
+        if (result)
+        {
+            <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Msg");
+                window.location.href = "/Organizacions/Index"
+            }
+            </script>
+        }
+        else
+        {
+            <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Msg");
+                window.location.href = "/Organizacions/Create"
+            }
+            </script>
+        }
+    }
+}
+
+<div>
+    @Html.ActionLink("Listado", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

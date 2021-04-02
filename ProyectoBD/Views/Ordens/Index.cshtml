@@ -1,0 +1,61 @@
+﻿@model IEnumerable<ProyectoBD.Models.Proveedor>
+
+@{
+    ViewBag.Title = "Listado";
+}
+
+<h2>Index</h2>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial;
+        background-image: url('../../Photography basics (5).png');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+</style>
+
+<h2>Proveedores para @ViewBag.nombre2</h2>
+<table class="table">
+    <tr>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Dirección
+        </th>
+        <th>
+            Ciudad
+        </th>
+        <th>
+            Contacto
+        </th>
+        <th>
+            Telefono
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreProveedor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Direccion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ciudad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreContacto)
+        </td>
+        <td>
+            @Html.ActionLink("Lista", "EditNum", new { id = item.ID_Proveedor })
+        </td>
+       
+    </tr>
+}
+
+</table>

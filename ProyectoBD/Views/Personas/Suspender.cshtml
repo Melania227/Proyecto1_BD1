@@ -1,0 +1,68 @@
+﻿@model ProyectoBD.Models.Persona
+
+@{
+    ViewBag.Title = "Suspender";
+}
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background-image: url('../../Photography basics (5).png');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+    </style>
+<h2>Sussender</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <h2>Suspender un cliente</h2>
+
+    <div class="form-horizontal">
+
+        <h4>Persona</h4>
+        <hr />
+        <div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Cedula, "Nombre", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Cedula, ViewBag.ID_Persona as SelectList, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Cedula, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Suspender" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    if (ViewBag.Msg != null)
+    {
+        bool result = ViewBag.Resultado;
+
+        if (result)
+        {
+            <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Msg");
+                window.location.href = "/Personas/Index"
+            }
+            </script>
+        }
+        else
+        {
+            <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Msg");
+                window.location.href = "/Personas/Suspender"
+            }
+            </script>
+        }
+    }
+}
+<div>
+    @Html.ActionLink("Listado", "Index")
+</div>

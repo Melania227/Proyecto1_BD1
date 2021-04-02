@@ -1,0 +1,57 @@
+﻿@model ProyectoBD.Models.Organizacion
+
+@{
+    ViewBag.Title = "Contacto";
+}
+    <h2>Información de contacto</h2>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background-image: url('../../Photography basics (5).png');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+    </style>
+
+<div>
+    <h2>Información de contacto</h2>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Organización
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            Contacto
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contacto1.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contacto1.Cargo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contacto1.Cargo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Contacto1.Telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contacto1.Telefono)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Volver al listado", "Index")
+</p>

@@ -1,0 +1,135 @@
+﻿@model ProyectoBD.Models.Organizacion
+
+@{
+    ViewBag.Title = "Editar";
+}
+
+<h2>Edit</h2>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial;
+        background-image: url('../../Photography basics (5).png');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+</style>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h2>Editar cliente</h2>
+    <h4>Organización</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <!--NOMBRE-->
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <!--Ciudad-->
+    <div class="form-group">
+        @Html.LabelFor(model => model.Cliente.Ciudad, "Ciudad", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Cliente.Ciudad, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Cliente.Ciudad, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <!--Direccion-->
+    <div class="form-group">
+        @Html.LabelFor(model => model.Cliente.Direccion, "Dirección", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Cliente.Direccion, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Cliente.Direccion, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    
+        <!-- ESTADO -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cliente.ID_Estado, "Estado", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Cliente.ID_Estado, ViewBag.ID_EstadoList as SelectList, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Cliente.ID_Estado, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+    
+
+    <h4>Contacto</h4>
+    <hr />
+
+    <!--Contacto-->
+    <div class="form-group">
+        @Html.LabelFor(model => model.Contacto1.Nombre, "Contacto", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Contacto1.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Contacto1.Nombre, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <!--Cargo-->
+    <div class="form-group">
+        @Html.LabelFor(model => model.Contacto1.Cargo, "Cargo", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Contacto1.Cargo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Contacto1.Cargo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <!--Telefono-->
+    <div class="form-group">
+        @Html.LabelFor(model => model.Contacto1.Telefono, "Teléfono", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Contacto1.Telefono, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Contacto1.Telefono, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Editar" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+    if (ViewBag.Msg != null)
+    {
+        bool result = ViewBag.Resultado;
+
+        if (result)
+        {
+            <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Msg");
+                window.location.href = "/Organizacions/Index"
+            }
+            </script>
+        }
+        else
+        {
+            <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Msg");
+                window.location.href = "/Organizacions/EditarMenu"
+            }
+            </script>
+        }
+    }
+}
+
+<div>
+    @Html.ActionLink("Volver", "EditarMenu")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

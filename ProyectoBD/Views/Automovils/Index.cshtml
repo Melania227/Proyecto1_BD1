@@ -1,0 +1,85 @@
+﻿@model IEnumerable<ProyectoBD.Models.Parte>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+ <h2>hi</h2>
+<style>
+
+
+
+</style>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial;
+        background-image: url('../../Photography basics (5).png');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+       ¿
+
+
+</style>
+
+<h2>@ViewBag.Mod - @ViewBag.Info</h2>
+<hr />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken(){
+
+        if (ViewBag.hayNum != 0)
+        {
+            <div class="form-group">
+                <table>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Nombre)
+                        </th>
+
+
+                        <th>
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Marca)
+                        </th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nombre)
+                            </td>
+                            
+                            <th>
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            </th>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Marca)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="form-group">
+                <table class="table">
+                    <tr>
+                        No se encuentran partes compatibles.
+                    </tr>
+                </table>
+            </div>
+        }
+
+    }
+}
+
+<div>
+    @Html.ActionLink("Volver", "Create")
+</div>

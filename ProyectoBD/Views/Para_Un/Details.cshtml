@@ -1,0 +1,50 @@
+﻿@model ProyectoBD.Models.Modelos.PartesModelo
+@{
+    ViewBag.Title = "Listado";
+}
+
+<h2>Patito</h2>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial;
+        background-image: url('../../Photography basics (5).png');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+</style>
+
+<h2>@Html.DisplayFor(model => model.Nombre) @Html.DisplayFor(model => model.Marca) creado por @Html.DisplayFor(model => model.Fabricante.Nombre)</h2>
+<h4>Lista de automóviles compatibles</h4>
+
+<table class="table">
+    <tr>
+        <th>
+            Modelo
+        </th>
+        <th>
+            Año
+        </th>
+        <th>
+            Información
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.TiposAuto)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Modelo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.añoFabricacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Detalle)
+            </td>
+        </tr>
+    }
+
+</table>

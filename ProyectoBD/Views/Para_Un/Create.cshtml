@@ -1,0 +1,76 @@
+﻿@model ProyectoBD.Models.Modelos.Para_UnModelo
+
+@{
+    ViewBag.Title = "Asociar";
+}
+
+<h2>Create</h2>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial;
+        background-image: url('../../Photography basics (5).png');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h2>Asociación Parte - Tipo de automóvil</h2>
+        <hr />
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ID_Parte, "Parte", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.ID_Parte, ViewBag.ID_Parte as SelectList, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ID_Parte, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.ID_Automovil, "Automovil", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.ID_Automovil, ViewBag.ID_Automovil as SelectList, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ID_Automovil, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Agregar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    if (ViewBag.Msg != null)
+    {
+        bool result = ViewBag.Resultado;
+
+        if (result)
+        {
+            <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Msg");
+                window.location.href = "/Automovils/Create"
+            }
+            </script>
+        }
+        else
+        {
+            <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Msg");
+                window.location.href = "/Para_Un/Create"
+            }
+            </script>
+        }
+    }
+}
+<div>
+    @Html.ActionLink("Listado", "Create", "Automovils")
+</div>

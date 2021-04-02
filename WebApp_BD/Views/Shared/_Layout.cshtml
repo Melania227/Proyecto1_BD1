@@ -1,0 +1,207 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        body {margin:0;font-family:Arial}
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-size: 18px;
+        }
+    .mytopnav {
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .mytopnav ul {
+      display: inline-flex;
+      color: #ffffff;
+      list-style: none;
+
+    }
+
+    .mytopnav ul li {
+      width:120px;
+      margin:15px;
+      padding: 15px;
+    }
+
+    .mytopnav ul li a {
+      text-decoration:none;
+      color: #ffffff;
+    }
+
+    .active, .mytopnav ul li:hover{
+        background:  rgba(75,75,75,0.9);
+        border-radius: 3px;
+    }
+
+    .mytopnav .fa {
+        margin-right: 8px;
+    }
+
+    .submenu_1{
+        display: none;
+
+    }
+
+    .mytopnav ul li:hover .submenu_1 {
+        display: block;
+        position: absolute;
+        background: rgba(85,85,85,0.9);
+        margin-top: 15px;
+        margin-bottom: -15px;
+    }
+
+    .mytopnav ul li:hover .submenu_1 ul {
+            display: block;
+            margin: 10px;
+        }
+
+    .mytopnav ul li:hover .submenu_1 ul li {
+        width: 150px;
+        padding: 10px;
+        border-bottom: 1px ridge #fff;
+        background: transparent;
+        border-radius: 0;
+        text-align: left;
+    }
+
+    .mytopnav ul li:hover .submenu_1 ul li:last-child {
+        border-bottom: none;
+    }
+
+    .mytopnav ul li:hover .submenu_1 ul li a:hover {
+        color: #999595;
+    }
+
+    .fa-angle-right {
+        float: right;
+    }
+
+    .fa fa-user .fa-car .fa-bars .fa-home{
+        float: left;
+    }
+
+    .submenu_2{
+        display: none;
+    }
+
+    .hover-me:hover .submenu_2{
+        position: absolute;
+        display: block;
+        margin-top: -40px;
+        margin-left: 140px;
+        background: rgba(95,95,95,0.9);
+    }
+
+    .hover-me:hover .submenu_2 ul{
+        border-bottom: 1px ridge #fff;
+    }
+
+    .hover-me:hover .submenu_2 ul:last-child {
+        border-bottom: none;
+    }
+
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="mytopnav" id="myTopnav">
+                <ul>
+                    <li><a><i class="fa fa-home"></i>@Html.ActionLink("Inicio", "Index", "Home") </a></li>
+                    <li>
+                        <a href="#"><i class="fa fa-user"></i>Cliente</a>
+                        <div class="submenu_1">
+                            <ul>
+                                <li class="hover-me">
+                                    <a>Agregar <i class="fa fa-angle-right"></i></a>
+                                    <div class="submenu_2">
+                                        <ul>
+                                            <li><a>@Html.ActionLink("Persona", "Create", "Personas") </a></li>
+                                        </ul>
+                                        <ul>
+                                            <li><a>@Html.ActionLink("Organización", "Create", "Organizacions") </a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li><a href="#">@Html.ActionLink("Modificar", "Edit", "Clientes") </a></li>
+                                <li><a href="#">@Html.ActionLink("Suspender", "Delete", "Clientes") </a></li>
+                                <li class="hover-me">
+                                    <a>Listado <i class="fa fa-angle-right"></i></a>
+                                    <div class="submenu_2">
+                                        <ul>
+                                            <li><a>@Html.ActionLink("Personas", "Index", "Personas") </a></li>
+                                        </ul>
+                                        <ul>
+                                            <li><a>@Html.ActionLink("Organizaciones", "Index", "Organizacions") </a></li>
+                                        </ul>
+                                        <ul>
+                                            <li><a>@Html.ActionLink("Total", "Index", "Clientes") </a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-car"></i>Parte</a>
+                        <div class="submenu_1">
+                            <ul>
+                                <li><a href="#">Agregar</a></li>
+                                <li><a href="#">Eliminar </a></li>
+                                <li class="hover-me">
+                                    <a href="#">Asociar <i class="fa fa-angle-right"></i></a>
+                                    <div class="submenu_2">
+                                        <ul>
+                                            <li><a href="#">Con proveedores </a></li>
+                                        </ul>
+                                        <ul>
+                                            <li><a href="#">Con tipos de automóviles </a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li><a href="#">Actualizar precios </a></li>
+                                <li><a href="#">Listado por tipos de automóviles</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-bars"></i>Órden</a>
+                        <div class="submenu_1">
+                            <ul>
+                                <li><a href="#">Localizar proveedores </a></li>
+                                <li><a href="#">Agregar </a></li>
+                                <li><a href="#">Asociar </a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>   
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Tarea Programada 1 </p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+   
+
+</body>
+
+</html>

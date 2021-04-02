@@ -1,0 +1,87 @@
+﻿@model IEnumerable<ProyectoBD.Models.Modelos.OrdenClienteModelo>
+
+@{
+    ViewBag.Title = "Registro de Ordenes";
+}
+
+<h2>Index</h2>
+
+<h2>Registro de Órdenes</h2>
+<hr />
+<style>
+    body {
+        margin: 0;
+        font-family: Arial;
+        background-image: url('../../Photography basics (5).png');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+</style>
+
+@foreach (var item in Model)
+{
+
+    <h3>
+        Órden #@Html.DisplayFor(modelItem => item.Orden.ID_Orden)  |  Cliente: @Html.DisplayFor(modelItem => item.Nombre)  |  Fecha: @Html.DisplayFor(modelItem => item.Orden.Fecha.Day) - @Html.DisplayFor(modelItem => item.Orden.Fecha.Month) - @Html.DisplayFor(modelItem => item.Orden.Fecha.Year)
+    </h3>
+    if (item.detalle.Any())
+    {
+        <table class="table">
+            <tr>
+                <th>
+                    Pieza
+                </th>
+                <th>
+                    Marca
+                </th>
+                <th>
+                    Fabricante
+                </th>
+                <th>
+                    Proveedor
+                </th>
+                <th>
+                    Cantidad
+                </th>
+                <th>
+                    Precio Total
+                </th>
+            </tr>
+            @foreach (var itemi in item.detalle)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => itemi.Parte.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => itemi.Parte.Marca)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => itemi.Parte.Fabricante.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => itemi.Proveedor.NombreProveedor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => itemi.Cantidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => itemi.PrecioPieza)
+                </td>
+            </tr>
+            }
+
+        </table>
+    <h4>
+        Monto total: @Html.DisplayFor(modelItem => item.Orden.MontoFinal)  |  Monto: @Html.DisplayFor(modelItem => item.Orden.Monto)  |  IVA: @Html.DisplayFor(modelItem => item.Orden.IVA)
+    </h4>
+        <br />
+    }
+    else
+    {
+        <h4> No hay compra de partes asociada</h4>
+        <hr />
+        <br />
+    }
+}

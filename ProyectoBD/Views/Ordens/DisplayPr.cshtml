@@ -1,0 +1,9 @@
+﻿@model ProyectoBD.Models.Proveedor
+
+<option value="">Seleccionar Proveedores</option>
+
+@foreach (var item in ViewBag.partesProv)
+{
+    <option value="@item.Value">@item.Text</option>
+    Console.WriteLine("gatito");
+}

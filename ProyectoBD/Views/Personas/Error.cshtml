@@ -1,0 +1,18 @@
+﻿@model ProyectoBD.Models.Persona
+@{
+    ViewBag.Title = "Error";
+}
+
+<h2>Error</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    if (null != TempData["alertMessage"])
+    {
+        <script type="text/javascript">
+         alert(@TempData["alertMessage"]);
+        </script>
+    }
+}

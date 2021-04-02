@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ProyectoBD.Models.Proveidas_por>
+
+@{
+    ViewBag.Title = "Listado";
+}
+
+<h2>Index</h2>
+
+<h2>Listado Parte - Proveedor</h2>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial;
+        background-image: url('../../Photography basics (5).png');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+</style>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Parte.Nombre)
+        </th>
+        <th>
+            Marca
+        </th>
+        <th>
+            Nombre Proveedor
+        </th>
+        <th>
+            Precio Proveedor
+        </th>
+        <th>
+            Precio Cliente
+        </th>
+        <th>
+            Porción Ganada
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Parte.Nombre)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Parte.Marca)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Proveedor.NombreProveedor)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Precio)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PrecioCliente)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PorciónGanada)
+    </td>
+</tr>
+}
+
+</table>

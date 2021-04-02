@@ -1,0 +1,11 @@
+﻿CREATE TABLE [dbo].[Orden]
+(
+	[ID_Orden] INT IDENTITY (0, 1) NOT NULL, 
+    [Fecha] DATE NOT NULL, 
+    [Monto] DECIMAL(9,2) DEFAULT 0 NOT NULL, 
+    [MontoFinal] DECIMAL(9,2) DEFAULT 0 NOT NULL, 
+    [IVA] DECIMAL(9,2) DEFAULT 0 NOT NULL, 
+    [ID_Cliente] INT NOT NULL,
+    CONSTRAINT [PK_Orden] PRIMARY KEY ([ID_Orden]), 
+    CONSTRAINT [FK_Cliente] FOREIGN KEY ([ID_Cliente]) REFERENCES [Cliente]([ID_Cliente]) ON DELETE CASCADE ON UPDATE CASCADE
+)

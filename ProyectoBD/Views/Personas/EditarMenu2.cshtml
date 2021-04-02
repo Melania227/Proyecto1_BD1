@@ -1,0 +1,80 @@
+﻿@model ProyectoBD.Models.Modelos.Persona_Telefono
+
+@{
+    ViewBag.Title = "Editar número";
+}
+@{
+    var id = ViewContext.RouteData.Values["id"];
+}
+
+<h2>Ao</h2>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial;
+        background-image: url('../../Photography basics (5).png');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    <style>
+        .btn {
+            margin-left: 15px;
+            margin-top: 10px;
+        }
+
+        .col-md-offset-2 {
+            margin-bottom: 15px;
+        }
+    </style>
+    <h2>Editar teléfono</h2>
+    <hr />
+
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.tel, "Telefono", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.tel, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.tel, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @Html.HiddenFor(model => model.telViejo, new { @Value = Model.telViejo })
+    @Html.HiddenFor(model => model.ced, new { @Value = Model.ced })
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" name="submitButton" value="Guardar" class="btn btn-default" />
+        </div>
+    </div>
+    if (ViewBag.Msg != null)
+    {
+        bool result = ViewBag.Resultado;
+
+        if (result)
+        {
+            <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Msg");
+                window.location.href = "/Personas/Index"
+            }
+            </script>
+        }
+        else
+        {
+            <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Msg");
+                window.location.href ="/Personas/EditarMenu2/"+@id+"?num="+@Model.telViejo
+            }
+            </script>
+        }
+    }
+}
+@Html.ActionLink("Volver", "EditNum", new { id = id })
+
+<hr />
